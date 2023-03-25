@@ -36,6 +36,19 @@ function getRandomInteger (a, b) {
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 }
+// Создадим функцию которая будет делать массив
+//для начала создадим пустой массив
+let array = [];
+// и переменную максимальной длинны масива
+const maxElements = 25
+function getArray () {
+  for (let i = 0; i < maxElements; i++){
+    array.push(i);
+  }
+  return array;
+}
+getArray();
+
 /* Необходимо создать массив из 25 сгенерированных объектов, где объект - описание фотографии опубликованной пользователем.
 Назовем массив Альбом(album)
 
