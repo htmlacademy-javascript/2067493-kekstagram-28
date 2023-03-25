@@ -41,9 +41,13 @@ function getRandomInteger (a, b) {
 let array = [];
 // и переменную максимальной длинны масива
 const maxElements = 25
+//Теперь сделаем так что бы в массив добалялся объект с id и URL фотографии
 function getArray () {
-  for (let i = 0; i < maxElements; i++){
-    array.push(i);
+  for (let i = 1; i <= maxElements; i++){
+    array.push({
+      id: i,
+      url: '/photos/'+ i + '.jpg'
+    });
   }
   return array;
 }
