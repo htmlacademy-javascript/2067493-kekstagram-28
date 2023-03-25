@@ -42,17 +42,19 @@ let array = [];
 // и переменную максимальной длинны масива
 const maxElements = 25
 //Теперь сделаем так что бы в массив добалялся объект с id и URL фотографии
+//Добавим описание и количество лайков воспользовавшись функцией getRandomInteger
 function getArray () {
   for (let i = 1; i <= maxElements; i++){
     array.push({
       id: i,
-      url: '/photos/'+ i + '.jpg'
+      url: '/photos/'+ i + '.jpg',
+      description: DESCRIPTIONS[getRandomInteger (0, DESCRIPTIONS.length - 1)],
+      likes: getRandomInteger (15, 200)
     });
   }
   return array;
 }
 getArray();
-
 /* Необходимо создать массив из 25 сгенерированных объектов, где объект - описание фотографии опубликованной пользователем.
 Назовем массив Альбом(album)
 
