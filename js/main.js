@@ -29,6 +29,7 @@ const DESCRIPTIONS = [
   'Разгледеть красоту в необчном надо уметь!',
   'Было отличное время',
 ];
+
 // Функция которая дает рандомное число из задаваемого отрезка
 function getRandomInteger (a, b) {
   const lower = Math.ceil(Math.min(a, b));
@@ -36,59 +37,35 @@ function getRandomInteger (a, b) {
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 }
+
 let arrayComments = [];
 function getComments() {
-  for (let i = 0; i <= 1; i++){
-    arrayComments.push({
-      id: getRandomInteger(0, 1000),
-      avatar:`/photos/${getRandomInteger(1, 6)}.svg`,
-      message: MESSAGES[getRandomInteger(0, MESSAGES.length - 1)],
-      name: NAMES[getRandomInteger(0, NAMES.length - 1)]
-    });
-  }
+  arrayComments = [{
+    id: getRandomInteger(0, 1000),
+    avatar:`/photos/${getRandomInteger(1, 6)}.svg`,
+    message: MESSAGES[getRandomInteger(0, MESSAGES.length - 1)],
+    name: NAMES[getRandomInteger(0, NAMES.length - 1)]
+  }];
   return arrayComments;
 }
-
 getComments();
-// Создадим функцию которая будет делать массив
-//для начала создадим пустой массив
-let array = [];
-// и переменную максимальной длинны масива
+
+// Добавим данную функцию в основной массив
+// Создадим функцию которая будет делать массив Album
+let album = [];
 const maxElements = 25;
-//Теперь сделаем так что бы в массив добалялся объект с id и URL фотографии
-//Добавим описание и количество лайков воспользовавшись функцией getRandomInteger
-function getArray () {
+function getAlbum () {
   for (let i = 1; i <= maxElements; i++){
-    array.push({
+    album.push({
       id: i,
       url: `/photos/${ i }.jpg`,
       description: DESCRIPTIONS[getRandomInteger (0, DESCRIPTIONS.length - 1)],
-      likes: getRandomInteger (15, 200)
+      likes: getRandomInteger (15, 200),
+      comments: Array.from({length: getRandomInteger(1,3)}, getComments)
     });
   }
-  return array;
+  return album;
 }
-getArray();
-//Основные данные уже сделанны осталось толкько сделать комментарий. Комментарий у нас является массивом объектов так что создадим функцию которая будет его создовать выше.
+getAlbum();
 
-
-/* Необходимо создать массив из 25 сгенерированных объектов, где объект - описание фотографии опубликованной пользователем.
-Назовем массив Альбом(album)
-
-Структура каждого объекта:
-{
-id: индетификатор опобликованной фотографии (от 1-25 не должны повторяться)
-url: адрес картинки (photos/i.jpg где i - число от 1-25 не должно повторяться)
-description: описание фотографии (придумать самому)
-likes: случайное число от 15-200
-comments: [
-    {
-    id: любое число, но не должно повторяться
-    avatar: строка вида (img/avatar - (случайное число от 1-6).svg)
-    message: выбрать одно или два случайных комментария из предложенных выше
-    name: случайное имя придумать самому
-    }
-]
-
-}
-*/
+console.log(album);
