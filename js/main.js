@@ -36,18 +36,32 @@ function getRandomInteger (a, b) {
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 }
+let arrayComments = [];
+function getComments() {
+  for (let i = 0; i <= 1; i++){
+    arrayComments.push({
+      id: getRandomInteger(0, 1000),
+      avatar:`/photos/${getRandomInteger(1, 6)}.svg`,
+      message: MESSAGES[getRandomInteger(0, MESSAGES.length - 1)],
+      name: NAMES[getRandomInteger(0, NAMES.length - 1)]
+    });
+  }
+  return arrayComments;
+}
+
+getComments();
 // Создадим функцию которая будет делать массив
 //для начала создадим пустой массив
 let array = [];
 // и переменную максимальной длинны масива
-const maxElements = 25
+const maxElements = 25;
 //Теперь сделаем так что бы в массив добалялся объект с id и URL фотографии
 //Добавим описание и количество лайков воспользовавшись функцией getRandomInteger
 function getArray () {
   for (let i = 1; i <= maxElements; i++){
     array.push({
       id: i,
-      url: '/photos/'+ i + '.jpg',
+      url: `/photos/${ i }.jpg`,
       description: DESCRIPTIONS[getRandomInteger (0, DESCRIPTIONS.length - 1)],
       likes: getRandomInteger (15, 200)
     });
@@ -55,6 +69,9 @@ function getArray () {
   return array;
 }
 getArray();
+//Основные данные уже сделанны осталось толкько сделать комментарий. Комментарий у нас является массивом объектов так что создадим функцию которая будет его создовать выше.
+
+
 /* Необходимо создать массив из 25 сгенерированных объектов, где объект - описание фотографии опубликованной пользователем.
 Назовем массив Альбом(album)
 
