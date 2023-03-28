@@ -1,17 +1,10 @@
 //Функция для проверки длины строки. Имеет два параметра: строка и максимальная длина.
-function cheksLength (lineWord, maxLength) {
+function checksLength (lineWord, maxLength) {
   // Проверка длины строки lineWord с максимальным значение длины maxLegth, если меньше или равно то true, в остальных false
-  if (lineWord.length <= maxLength){
-    return true;
-  }
-
-  return false;
+  return lineWord.length <= maxLength;
 }
-console.log(cheksLength('Просто так', 18));
-console.log(cheksLength('Жизнь это хорошо', 5));
-console.log(cheksLength('Просто проверяем как работает', 8));
 
-
+checksLength('Пусть будет так', 8);
 
 //Функция для проверки строка палидромом
 //Для начала сделаем функцию которая развернет строку.
@@ -23,22 +16,15 @@ function unwrapString (string) {
     reverseString += lowerString[i];
   }
   return reverseString;
-
 }
+
 // функция сравнения строк
-function cheksPalidrom (string){
+function checksPalidrom (string){
   const lowerString = string.toLowerCase().replaceAll(' ','');
-  if (lowerString === unwrapString(string)){
-    return true;
-  }
-
-  return false;
-
+  return lowerString === unwrapString(string);
 }
-console.log(cheksPalidrom('ТоПот'));
-console.log(cheksPalidrom('Шопот'));
-console.log(cheksPalidrom('Молоко делили ледоколом'));
 
+checksPalidrom('Довод');
 
 // Функция которая извлекает число
 function findNumber(message) {
@@ -46,7 +32,7 @@ function findNumber(message) {
   const messageString = String(message);
   // Определим переменную в которую будет записываться число
   let number = '';
-  for (let i = 0; i <=messageString.length - 1; i++){
+  for (let i = 0; i <= messageString.length - 1; i++){
     if(parseInt(messageString[i], 10) >= 0){
       number += messageString[i];
     }
@@ -55,28 +41,24 @@ function findNumber(message) {
   return number;
 }
 
-console.log (findNumber('Пусть будет такое число 1691 и еще вот такое 985 и такое 125'));
-console.log (findNumber('просто такие числа 12 и 85 и 985'));
-console.log (findNumber(-12.151));
-
-
+findNumber('120 прибавить 140 равно 260');
 
 // Функция которая добавляет символы
-function addSimbol (originalString, minLengthString, additionString){
+function addString (originalString, minLengthString, additionString){
   let newString = originalString;
   //Количество дополнительных символов
   let size = minLengthString - newString.length;
 
   if (size <= additionString.length && size > 0){
     newString = additionString.slice(0, size) + newString;
-    return newString
+    return newString;
   } else if(size > additionString.length){
     while (size > 0){
       if(size > additionString.length) {
         newString = additionString.slice(0, additionString.length) + newString;
-        size = minLengthString - newString.length
+        size = minLengthString - newString.length;
       } else {
-        newString = additionString.slice(0, size) + newString
+        newString = additionString.slice(0, size) + newString;
         return newString;
       }
     }
@@ -85,9 +67,5 @@ function addSimbol (originalString, minLengthString, additionString){
   return newString;
 }
 
-console.log (addSimbol('1', 2, '0'));
-console.log (addSimbol('1', 4, '0'));
-console.log (addSimbol('q', 4, 'werty'));
-console.log (addSimbol('q', 4, 'we'));
-console.log (addSimbol('qwerty', 4, '0'));
+addString('Работа', 8, 'школа');
 
