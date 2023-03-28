@@ -38,13 +38,17 @@ function getRandomInteger (a, b) {
   return Math.floor(result);
 }
 
+// функция для поиска случайного элемента в массиве
+const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+
+//Функция для формирования комментария к фотографии
 let arrayComments = [];
-function getComments() {
+function getComments(number) {
   arrayComments = [{
-    id: getRandomInteger(0, 1000),
-    avatar:`/photos/${getRandomInteger(1, 6)}.svg`,
-    message: MESSAGES[getRandomInteger(0, MESSAGES.length - 1)],
-    name: NAMES[getRandomInteger(0, NAMES.length - 1)]
+    id: getRandomInteger(number * 20, number * 40),
+    avatar:`/avatar/${getRandomInteger(1, 6)}.svg`,
+    message: MESSAGES[getRandomArrayElement(MESSAGES)],
+    name: NAMES[getRandomArrayElement(NAMES)]
   }];
   return arrayComments;
 }
@@ -52,20 +56,18 @@ getComments();
 
 // Добавим данную функцию в основной массив
 // Создадим функцию которая будет делать массив Album
-let album = [];
+const album = [];
 const maxElements = 25;
 function getAlbum () {
   for (let i = 1; i <= maxElements; i++){
     album.push({
       id: i,
       url: `/photos/${ i }.jpg`,
-      description: DESCRIPTIONS[getRandomInteger (0, DESCRIPTIONS.length - 1)],
+      description: DESCRIPTIONS[getRandomArrayElement(DESCRIPTIONS)],
       likes: getRandomInteger (15, 200),
-      comments: Array.from({length: getRandomInteger(1,3)}, getComments)
+      comments: Array.from({length: getRandomInteger(1,2)}, () => getComments(i))
     });
   }
   return album;
 }
 getAlbum();
-
-console.log(album);
