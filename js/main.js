@@ -31,43 +31,38 @@ const DESCRIPTIONS = [
 ];
 
 // Функция которая дает рандомное число из задаваемого отрезка
-function getRandomInteger (a, b) {
+const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
-}
+};
 
 // функция для поиска случайного элемента в массиве
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 //Функция для формирования комментария к фотографии
-let arrayComments = [];
-function getComments(number) {
-  arrayComments = [{
+const getComments = (number) => {
+  const arrayComments = [{
     id: getRandomInteger(number * 20, number * 40),
     avatar:`/avatar/${getRandomInteger(1, 6)}.svg`,
     message: MESSAGES[getRandomArrayElement(MESSAGES)],
     name: NAMES[getRandomArrayElement(NAMES)]
   }];
   return arrayComments;
-}
+};
 getComments();
 
 // Добавим данную функцию в основной массив
 // Создадим функцию которая будет делать массив Album
-const album = [];
-const maxElements = 25;
-function getAlbum () {
-  for (let i = 1; i <= maxElements; i++){
-    album.push({
-      id: i,
-      url: `/photos/${ i }.jpg`,
-      description: DESCRIPTIONS[getRandomArrayElement(DESCRIPTIONS)],
-      likes: getRandomInteger (15, 200),
-      comments: Array.from({length: getRandomInteger(1,2)}, () => getComments(i))
-    });
-  }
-  return album;
-}
-getAlbum();
+const MAX_ELEMENTS = 25;
+const getAlbum = (index) => ({
+  id: index + 1,
+  url: `/photos/${ index }.jpg`,
+  description: DESCRIPTIONS[getRandomArrayElement(DESCRIPTIONS)],
+  likes: getRandomInteger (15, 200),
+  comments: Array.from({length: getRandomInteger(1,2)}, () => getComments(index))
+});
+
+const album = Array.from({length: MAX_ELEMENTS}, (item, i) => getAlbum(i));
+
