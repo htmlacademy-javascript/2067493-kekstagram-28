@@ -46,10 +46,10 @@ const getComments = (number) => {
 const MAX_ELEMENTS = 25;
 const getAlbum = (index) => ({
   id: index + 1,
-  url: `/photos/${ index }.jpg`,
+  url: `photos/${index + 1}.jpg`,
   description: DESCRIPTIONS[getRandomArrayElement(DESCRIPTIONS)],
   likes: getRandomInteger (15, 200),
-  comments: Array.from({length: getRandomInteger(1,2)}, () => getComments(index))
+  comments: Array.from({length: getRandomInteger(1,20)}, () => getComments(index))
 });
 const album = Array.from({length: MAX_ELEMENTS}, (item, i) => getAlbum(i));
 
