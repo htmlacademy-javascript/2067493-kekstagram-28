@@ -49,7 +49,7 @@ const getAlbum = (index) => ({
   url: `/photos/${ index }.jpg`,
   description: DESCRIPTIONS[getRandomArrayElement(DESCRIPTIONS)],
   likes: getRandomInteger (15, 200),
-  comments: Array.from({length: getRandomInteger(1,2)}, () => getComments(index))
+  comments: Array.from({length: getRandomInteger(1,20)}, () => getComments(index))
 });
 const album = Array.from({length: MAX_ELEMENTS}, (item, i) => getAlbum(i));
 
