@@ -1,3 +1,4 @@
 import {album} from './data.js';
+import {addingThumbnail} from './thumbnail.js';
 
-console.log(album);
+addingThumbnail(album);
